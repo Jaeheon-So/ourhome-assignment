@@ -1,8 +1,7 @@
-import { useCallback } from "react";
 import { useRecoilState } from "recoil";
 import { modalState } from "../store/modalAtom";
 
-type OpenModalType = {
+type ModalType = {
   title: string;
   content: JSX.Element | string;
   callBack?: () => any;
@@ -11,24 +10,20 @@ type OpenModalType = {
 export const useModal = () => {
   const [modalDataState, setModalDataState] = useRecoilState(modalState);
 
-  const closeModal = useCallback(
-    () =>
-      setModalDataState((prev: OpenModalType) => {
-        return { ...prev, isOpen: false };
-      }),
-    [setModalDataState]
-  );
+  const closeModal = () => {
+    setModalDataState((prev: ModalType) => {
+      return { ...prev, isOpen: false };
+    });
+  };
 
-  const openModal = useCallback(
-    ({ title, content, callBack }: OpenModalType) =>
-      setModalDataState({
-        isOpen: true,
-        title: title,
-        content: content,
-        callBack: callBack,
-      }),
-    [setModalDataState]
-  );
+  const openModal = ({ title, content, callBack }: ModalType) => {
+    setModalDataState({
+      isOpen: true,
+      title: title,
+      content: content,
+      callBack: callBack,
+    });
+  };
 
   return { modalDataState, closeModal, openModal };
 };
