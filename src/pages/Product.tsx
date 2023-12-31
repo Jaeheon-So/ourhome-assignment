@@ -3,8 +3,8 @@ import ProdectCard from "../components/ProdectCard";
 import { productList } from "../data/data";
 
 const Product = () => {
-  const products = productList.map((product, index) => (
-    <ProdectCard key={index} {...product} />
+  const products = productList.map((product) => (
+    <ProdectCard key={product.id} {...product} />
   ));
 
   return <Container>{products}</Container>;
