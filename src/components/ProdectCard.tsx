@@ -51,11 +51,11 @@ const ProdectCard = ({
   };
 
   const checkDuplicate = () => {
-    if (!cartList.find((item) => item.id === id)) addCart();
+    if (!cartList.find((item) => item.id === id)) addCartItem();
     else openModal(duplicateCartModalData);
   };
 
-  const addCart = () => {
+  const addCartItem = () => {
     setCartList((prev) => [
       ...prev,
       {

@@ -18,22 +18,22 @@ const Counter = ({ id, count }: CounterProps) => {
     content: <div>해당 상품을 장바구니에서 삭제하시겠습니까?</div>,
     callBack: () => {
       closeModal();
-      deleteCart();
+      deleteCartItem();
     },
   };
 
-  const deleteCart = () => {
+  const deleteCartItem = () => {
     setCartList((prev) => prev.filter((item) => item.id !== id));
   };
 
-  const onIncrease = () => {
+  const increaseItemCount = () => {
     const newCartList = cartList.map((item) =>
       item.id === id ? { ...item, count: item.count + 1 } : item
     );
     setCartList(newCartList);
   };
 
-  const onDecrease = () => {
+  const decreaseItemCount = () => {
     if (count <= 1) return openModal(deleteCartItemModalData);
 
     const newCartList = cartList.map((item) =>
@@ -42,7 +42,7 @@ const Counter = ({ id, count }: CounterProps) => {
     setCartList(newCartList);
   };
 
-  const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const changeItemCount = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.value[0] === "-") return;
 
     const newCartList = cartList.map((item) =>
@@ -62,17 +62,17 @@ const Counter = ({ id, count }: CounterProps) => {
 
   return (
     <Container>
-      <Button onClick={onDecrease}>
+      <Button onClick={decreaseItemCount}>
         <FaMinus />
       </Button>
       <Input
         name="count"
         type="number"
         value={count || ""}
-        onChange={onChange}
+        onChange={changeItemCount}
         onBlur={onBlur}
       />
-      <Button onClick={onIncrease}>
+      <Button onClick={increaseItemCount}>
         <FaPlus />
       </Button>
     </Container>
