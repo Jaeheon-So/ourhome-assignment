@@ -1,16 +1,9 @@
 import { recoilPersist } from "recoil-persist";
 import { atom, selector } from "recoil";
 import { getDiscountPrice } from "../util/calculate";
+import { ProductCardItem } from "../data/data";
 
-export interface CartItemType {
-  id: string;
-  image: string;
-  title: string;
-  subtitle: string;
-  price: number;
-  discountRate: number;
-  store: string;
-  best: boolean;
+export interface CartItemType extends ProductCardItem {
   count: number;
 }
 
