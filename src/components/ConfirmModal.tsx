@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { useModal } from "../hooks/useModal";
 import { IoMdClose } from "react-icons/io";
 
-const Modal = () => {
+const ConfirmModal = () => {
   const { modalDataState, closeModal } = useModal();
 
   const modalStyle: ReactModal.Styles = {
@@ -100,4 +100,4 @@ const Button = styled.div`
   }
 `;
 
-export default Modal;
+export default ConfirmModal;
